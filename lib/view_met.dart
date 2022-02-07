@@ -8,6 +8,7 @@ class ViewMet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "View MET",
       theme: ThemeData(
         iconTheme: const IconThemeData(
