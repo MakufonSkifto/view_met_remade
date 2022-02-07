@@ -5,6 +5,7 @@ import 'package:view_met_remade/view_met.dart';
 import 'features/piece/presentation/bloc/piece_bloc.dart';
 import 'core/injectors/injection_container_piece.dart' as pc; // Piece Injection Container
 import 'core/injectors/injection_container_general.dart' as gc; // General Injection Container
+import 'core/injectors/injection_container_favorite.dart' as fc; // Favorites Injection Container
 
 
 void main() async {
@@ -13,6 +14,7 @@ void main() async {
   // Initialize Injection Containers
   await pc.init();
   await gc.init();
+  await fc.init();
 
   runApp(MultiBlocProvider(
     providers: [
