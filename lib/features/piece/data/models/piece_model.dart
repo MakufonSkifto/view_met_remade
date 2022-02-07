@@ -41,7 +41,7 @@ class PieceModel extends Piece {
       objectName: data["objectName"],
       artistDisplayName: data["artistDisplayName"] != ""
         ? data["artistDisplayName"]
-        : null,
+        : "Unknown",
       objectID: data["objectID"],
       isHighlight: data["isHighlight"],
       objectDate: data["objectDate"],
@@ -54,7 +54,7 @@ class PieceModel extends Piece {
       objectURL: data["objectURL"],
       primaryImageSmall: data["primaryImageSmall"] != ""
           ? data["primaryImageSmall"]
-          : null,
+          : "Unknown",
       country: data["country"]
     );
   }
