@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class Piece extends Equatable {
   final String title;
   final String objectName;
-  final String? artistDisplayName;
+  final String artistDisplayName;
   final int objectID;
   final bool isHighlight;
   final String objectDate;
@@ -14,7 +14,7 @@ class Piece extends Equatable {
   final String dimensions;
   final String creditLine;
   final String objectURL;
-  final String? primaryImageSmall;
+  final String primaryImageSmall;
   final String country;
 
   Piece({

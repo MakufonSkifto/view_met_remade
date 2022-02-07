@@ -4,7 +4,7 @@ class PieceModel extends Piece {
   PieceModel({
     required String title,
     required String objectName,
-    required String? artistDisplayName,
+    required String artistDisplayName,
     required int objectID,
     required bool isHighlight,
     required String objectDate,
@@ -15,7 +15,7 @@ class PieceModel extends Piece {
     required String dimensions,
     required String creditLine,
     required String objectURL,
-    required String? primaryImageSmall,
+    required String primaryImageSmall,
     required String country,
     }) : super(
     title: title,
