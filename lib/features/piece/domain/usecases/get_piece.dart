@@ -3,9 +3,9 @@ import 'package:view_met_remade/features/piece/domain/entities/piece.dart';
 import 'package:view_met_remade/features/piece/domain/repositories/piece_repository.dart';
 
 import '../../../../core/exceptions/failures.dart';
-import '../../../../core/usecases/usecase.dart';
+import '../../../../core/usecases/piece_usecase.dart';
 
-class GetPiece extends UseCase<Piece, int> {
+class GetPiece extends PieceUseCase<Piece, int> {
   final PieceRepository repository;
 
   GetPiece(this.repository);

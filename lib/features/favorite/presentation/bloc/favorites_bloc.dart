@@ -1,18 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:view_met_remade/features/piece/data/models/piece_model.dart';
+import 'package:view_met_remade/features/favorite/domain/repositories/favorites_repository.dart';
+import 'package:view_met_remade/features/favorite/domain/usecases/add_to_favorites.dart';
 
-import '../../../piece/domain/entities/piece.dart';
+import '../../../piece/data/models/piece_model.dart';
 
 part 'favorites_event.dart';
 part 'favorites_state.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
-  FavoritesBloc() : super(FavoritesInitial()) {
-    on<OnPieceFavorited>(_onPieceFavorited);
-  }
+  final FavoritesRepository repository;
 
-  void _onPieceFavorited(OnPieceFavorited event, Emitter<FavoritesState> emit) {
-
+  FavoritesBloc(this.repository) : super(FavoritesInitial()) {
+    on<FavoritesEvent>((event, emit) {});
   }
 }

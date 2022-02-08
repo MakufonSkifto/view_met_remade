@@ -7,7 +7,9 @@ import '../bloc/piece_bloc.dart';
 import '../widgets/piece_display.dart';
 import '../widgets/message_display.dart';
 
+
 class PiecePage extends StatelessWidget {
+
   final int id;
 
   const PiecePage({Key? key, required this.id}) : super(key: key);
@@ -25,20 +27,16 @@ class PiecePage extends StatelessWidget {
   }
 
   BlocProvider<PieceBloc> buildBody(BuildContext context) {
-    BlocProvider.of<PieceBloc>(context).add(OnPieceRequestedEvent(id));
-
     return BlocProvider(
-      create: (_) => sl<PieceBloc>(),
+      create: (_) => sl<PieceBloc>()..add(OnPieceRequestedEvent(id)),
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: BlocBuilder<PieceBloc, PieceState>(
             builder: (context, state) {
-              print(state);
               if (state is Loading) {
                 return const LoadingWidget();
               } else if (state is Loaded) {
-                print("loaded Lmao");
                 return PieceDisplay(state.piece);
               } else if (state is Error) {
                 return MessageDisplay(

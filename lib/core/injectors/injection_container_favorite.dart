@@ -12,10 +12,10 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // bloc
-  sl.registerFactory(() => FavoritesBloc());
+  sl.registerFactory(() => FavoritesBloc(sl()));
 
   // repository
-  sl.registerLazySingleton<FavoritesRepository>(() => PieceRepositoryImpl(
+  sl.registerLazySingleton<FavoritesRepository>(() => FavoritesRepositoryImpl(
       dataSource: sl()
   ));
 
