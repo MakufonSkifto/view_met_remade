@@ -24,7 +24,7 @@ class PieceTextWidget extends StatelessWidget {
           Expanded(
             child: Text(
               content,
-              style: GoogleFonts.merriweatherSans(fontSize: 20),
+              style: GoogleFonts.merriweatherSans(fontSize: 20, color: Colors.white.withOpacity(.90)),
             ),
           )
         ],

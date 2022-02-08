@@ -12,17 +12,23 @@ class FavoritesInitial extends FavoritesState {
 class Error extends FavoritesState {
   final String message;
 
-  Error({required this.message});
+  const Error({required this.message});
 
   @override
   List<Object?> get props => [message];
 }
 
 class Loaded extends FavoritesState {
-  final PieceModel piece;
+  final List<String> favoritedPieces;
 
-  Loaded({required this.piece});
+  const Loaded({required this.favoritedPieces});
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [favoritedPieces];
+}
+
+
+class Loading extends FavoritesState {
+  @override
+  List<Object?> get props => [];
 }

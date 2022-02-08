@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:view_met_remade/features/favorite/presentation/bloc/favorites_bloc.dart';
 
-import '../../../../core/injectors/injection_container_piece.dart';
-import '../../../piece/presentation/widgets/loading_widget.dart';
-import '../bloc/piece_bloc.dart';
-import '../widgets/piece_display.dart';
-import '../widgets/message_display.dart';
+import 'package:view_met_remade/features/favorite/presentation/widgets/loading_widget.dart';
+import 'package:view_met_remade/features/favorite/presentation/widgets/message_display.dart';
+
+import '../../../../core/injectors/injection_container_favorite.dart';
+import '../widgets/favorites_display.dart';
 
 
-class PiecePage extends StatelessWidget {
+class FavoritesPage extends StatelessWidget {
 
-  final int id;
-
-  const PiecePage({Key? key, required this.id}) : super(key: key);
+  const FavoritesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.red,
-        title: const Text("Piece"),
+        title: const Text("Favorites"),
       ),
       body: SingleChildScrollView(
         child: buildBody(context),
@@ -28,18 +25,18 @@ class PiecePage extends StatelessWidget {
     );
   }
 
-  BlocProvider<PieceBloc> buildBody(BuildContext context) {
+  BlocProvider<FavoritesBloc> buildBody(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<PieceBloc>()..add(OnPieceRequestedEvent(id)),
+      create: (_) => sl<FavoritesBloc>()..add(OnFavoritesRequestedEvent()),
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: BlocBuilder<PieceBloc, PieceState>(
+          child: BlocBuilder<FavoritesBloc, FavoritesState>(
             builder: (context, state) {
               if (state is Loading) {
                 return const LoadingWidget();
               } else if (state is Loaded) {
-                return PieceDisplay(state.piece);
+                return FavoritesDisplay(favorites: state.favoritedPieces);
               } else if (state is Error) {
                 return MessageDisplay(
                   message: state.message,
