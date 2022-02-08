@@ -11,6 +11,8 @@ part 'favorites_state.dart';
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   final FavoritesRepository repository;
 
+  // TODO: implement OnFavoritesGet
+
   FavoritesBloc(this.repository) : super(FavoritesInitial()) {
     on<FavoritesEvent>((event, emit) {});
   }

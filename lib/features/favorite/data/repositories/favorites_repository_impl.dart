@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
+import 'package:view_met_remade/core/platform/network_info.dart';
 
 import '../../../../core/exceptions/exceptions.dart';
 import '../../../../core/exceptions/failures.dart';
 import '../../../piece/data/models/piece_model.dart';
-import '../../../piece/domain/entities/piece.dart';
 import '../../domain/repositories/favorites_repository.dart';
 import '../datasources/favorites_data_source.dart';
 
