@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:view_met_remade/core/platform/network_info.dart';
 
 import '../../../../core/exceptions/exceptions.dart';
 import '../../../../core/exceptions/failures.dart';
@@ -25,6 +24,11 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
     return await _addToFavorites(pieceToFavorite);
   }
 
+  @override
+  Future<Either<Failure, List<String>>> removeFromFavorites(PieceModel pieceToRemove) async {
+    return await _removeFromFavorites(pieceToRemove);
+  }
+
   Future<Either<Failure, List<String>>> _getFavorites() async {
     try {
       final localPiece = await dataSource.getFavorites();
@@ -37,7 +41,15 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
   Future<Either<Failure, List<String>>> _addToFavorites(PieceModel pieceToFavorite) async {
     try {
       final localPiece = await dataSource.addToFavorites(pieceToFavorite);
-      print(localPiece);
+      return Right(localPiece);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
+
+  Future<Either<Failure, List<String>>> _removeFromFavorites(PieceModel pieceToRemove) async {
+    try {
+      final localPiece = await dataSource.removeFromFavorites(pieceToRemove);
       return Right(localPiece);
     } on CacheException {
       return Left(CacheFailure());

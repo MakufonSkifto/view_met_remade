@@ -11,9 +11,11 @@ abstract class FavoritesDataSource {
   Future<List<String>> getFavorites();
 
   Future addToFavorites(PieceModel pieceToFavorite);
+
+  Future removeFromFavorites(PieceModel pieceToRemove);
 }
 
-const favoritesList = "FAVORITES_LIST";
+const favoritesListString = "FAVORITES_LIST";
 
 class FavoritesDataSourceImpl implements FavoritesDataSource {
   final SharedPreferences sharedPreferences;
@@ -22,10 +24,10 @@ class FavoritesDataSourceImpl implements FavoritesDataSource {
 
   @override
   Future<List<String>> getFavorites() {
-    final jsonString = sharedPreferences.getStringList(favoritesList);
+    final favoritesList = sharedPreferences.getStringList(favoritesListString);
 
-    if (jsonString != null) {
-      return Future.value(jsonString);
+    if (favoritesList != null) {
+      return Future.value(favoritesList);
     } else {
       throw CacheException();
     }
@@ -33,24 +35,42 @@ class FavoritesDataSourceImpl implements FavoritesDataSource {
 
   @override
   Future addToFavorites(PieceModel pieceToCache) {
-    final jsonString = sharedPreferences.getStringList(favoritesList);
+    final favoritesList = sharedPreferences.getStringList(favoritesListString);
 
-    if (jsonString != null) {
-      jsonString.add(json.encode(pieceToCache.toJson()));
+    if (favoritesList != null) {
+      favoritesList.add(json.encode(pieceToCache.toJson()));
 
       sharedPreferences.setStringList(
+        favoritesListString,
         favoritesList,
-        jsonString,
       );
 
-      return Future.value(jsonString);
+      return Future.value(favoritesList);
     } else {
       sharedPreferences.setStringList(
-        favoritesList,
+        favoritesListString,
         [json.encode(pieceToCache.toJson())],
       );
 
       return Future.value([json.encode(pieceToCache.toJson())]);
+    }
+  }
+
+  @override
+  Future removeFromFavorites(PieceModel pieceToRemove) {
+    final favoritesList = sharedPreferences.getStringList(favoritesListString);
+
+    if (favoritesList != null) {
+      favoritesList.remove(json.encode(pieceToRemove.toJson()));
+
+      sharedPreferences.setStringList(
+        favoritesListString,
+        favoritesList,
+      );
+
+      return Future.value(favoritesList);
+    } else {
+      throw CacheException();
     }
   }
 }
