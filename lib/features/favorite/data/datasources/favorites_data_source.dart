@@ -23,7 +23,7 @@ class FavoritesDataSourceImpl implements FavoritesDataSource {
   @override
   Future<List<String>> getFavorites() {
     final jsonString = sharedPreferences.getStringList(favoritesList);
-    print(jsonString);
+
     if (jsonString != null) {
       return Future.value(jsonString);
     } else {
