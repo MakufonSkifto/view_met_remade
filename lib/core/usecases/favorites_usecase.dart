@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import '../exceptions/failures.dart';
 
 abstract class FavoritesUseCase<Type, Params> {
-  Future<Either<Failure, List<String>>> call(Params params);
+  Future<Either<Failure, List<String>>> call();
 }
 
 class NoParams extends Equatable {
