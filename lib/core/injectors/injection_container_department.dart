@@ -12,7 +12,7 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // bloc
-  // sl.registerFactory(() => DepartmentBloc(sl())); TODO: finish this
+  sl.registerFactory(() => DepartmentBloc(sl()));
 
   // repository
   sl.registerLazySingleton<DepartmentRepository>(() => DepartmentRepositoryImpl(
