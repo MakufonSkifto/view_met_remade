@@ -1,14 +1,15 @@
 import 'dart:convert';
 
+import 'package:dartz/dartz.dart';
 import 'package:view_met_remade/features/departments/data/models/department_model.dart';
 
 import '../../../../core/constants/constants.dart';
-import '../../../../core/exceptions/exceptions.dart';
+import '../../../../core/exceptions/failures.dart';
 import '../../domain/entities/department.dart';
 import 'package:http/http.dart' as http;
 
 abstract class DepartmentDataSource {
-  Future<List<Department>> getDepartments();
+  Future<Either<Failure, List<Department>>> getDepartments();
 }
 
 class DepartmentDataSourceImpl extends DepartmentDataSource {
@@ -17,7 +18,7 @@ class DepartmentDataSourceImpl extends DepartmentDataSource {
   DepartmentDataSourceImpl({required this.client});
 
   @override
-  Future<List<Department>> getDepartments() async {
+  Future<Either<Failure, List<Department>>> getDepartments() async {
     final response = await client.get(
       Uri.parse("$kBaseApiUrl/departments"),
       headers: {'Content-Type': 'application/json'},
@@ -31,9 +32,9 @@ class DepartmentDataSourceImpl extends DepartmentDataSource {
         departments.add(DepartmentModel.fromJson(department));
       }
 
-      return departments;
+      return Right(departments);
     } else {
-      throw ServerException();
+      return Left(ServerFailure());
     }
   }
 }

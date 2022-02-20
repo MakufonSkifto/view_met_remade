@@ -1,6 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:view_met_remade/features/departments/domain/entities/department.dart';
 import 'package:view_met_remade/features/departments/domain/repositories/department_repository.dart';
 
+import '../../../../core/exceptions/failures.dart';
 import '../datasources/department_data_source.dart';
 
 class DepartmentRepositoryImpl extends DepartmentRepository {
@@ -11,7 +13,7 @@ class DepartmentRepositoryImpl extends DepartmentRepository {
   });
 
   @override
-  Future<List<Department>> getDepartments() {
+  Future<Either<Failure, List<Department>>> getDepartments() {
     return dataSource.getDepartments();
   }
 }
