@@ -21,6 +21,7 @@ Future<void> init() async {
 
   // data source
   sl.registerLazySingleton<DepartmentDataSource>(() => DepartmentDataSourceImpl(
-      client: sl()
+      client: sl(),
+      pieceRepository: sl()
   ));
 }

@@ -2,20 +2,25 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:view_met_remade/features/departments/data/models/department_model.dart';
+import 'package:view_met_remade/features/piece/data/models/piece_model.dart';
+import 'package:view_met_remade/features/piece/domain/repositories/piece_repository.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/exceptions/failures.dart';
+import '../../../piece/domain/entities/piece.dart';
 import '../../domain/entities/department.dart';
 import 'package:http/http.dart' as http;
 
 abstract class DepartmentDataSource {
   Future<Either<Failure, List<Department>>> getDepartments();
+  Future<Either<Failure, List<Piece>>> getDepartmentPieces(Department department);
 }
 
 class DepartmentDataSourceImpl extends DepartmentDataSource {
   final http.Client client;
+  final PieceRepository pieceRepository;
 
-  DepartmentDataSourceImpl({required this.client});
+  DepartmentDataSourceImpl({required this.client, required this.pieceRepository});
 
   @override
   Future<Either<Failure, List<Department>>> getDepartments() async {
@@ -33,6 +38,28 @@ class DepartmentDataSourceImpl extends DepartmentDataSource {
       }
 
       return Right(departments);
+    } else {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Piece>>> getDepartmentPieces(Department department) async {
+    final response = await client.get(
+      Uri.parse("$kBaseApiUrl/search?departmentId=${department.departmentId}&q=%22%22"),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      Map body = json.decode(response.body);
+      List<Piece> pieces = [];
+
+      for (var piece in body["objectIDs"]) {
+        piece = pieceRepository.getPiece(piece);
+        pieces.add(piece);
+      }
+
+      return Right(pieces);
     } else {
       return Left(ServerFailure());
     }

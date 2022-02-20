@@ -6,7 +6,7 @@ import 'package:view_met_remade/features/departments/domain/entities/department.
 import '../../../../core/usecases/departments_usecase.dart';
 import '../repositories/department_repository.dart';
 
-class GetDepartments extends DepartmentsUseCase<List<Department>, NoParams> {
+class GetDepartments extends DepartmentsListUseCase<List<Department>, NoParams> {
   final DepartmentRepository repository;
 
   GetDepartments(this.repository);

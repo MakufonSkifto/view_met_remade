@@ -7,10 +7,16 @@ class DepartmentInitial extends DepartmentState {}
 
 class Loading extends DepartmentState {}
 
-class Loaded extends DepartmentState {
+class LoadedDepartments extends DepartmentState {
   final List<Department> departments;
 
-  Loaded({required this.departments});
+  LoadedDepartments({required this.departments});
+}
+
+class LoadedPieces extends DepartmentState {
+  final List<Piece> pieces;
+
+  LoadedPieces({required this.pieces});
 }
 
 class Error extends DepartmentState {

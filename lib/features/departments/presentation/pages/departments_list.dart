@@ -26,7 +26,7 @@ class DepartmentsList extends StatelessWidget {
             builder: (context, state) {
               if (state is Loading) {
                 return const LoadingWidget();
-              } else if (state is Loaded) {
+              } else if (state is LoadedDepartments) {
                 return DepartmentsListDisplay(departments: state.departments);
               } else if (state is Error) {
                 return MessageDisplay(
