@@ -3,7 +3,7 @@ import 'package:view_met_remade/features/departments/domain/entities/department.
 class DepartmentModel extends Department {
   const DepartmentModel({
     required String displayName,
-    required List<int> departmentId
+    required int departmentId
   }) : super(
       displayName: displayName,
       departmentId: departmentId
