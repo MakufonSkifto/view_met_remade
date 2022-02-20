@@ -33,7 +33,7 @@ class DepartmentDataSourceImpl extends DepartmentDataSource {
       Map body = json.decode(response.body);
       List<Department> departments = [];
 
-      for (var department in body["department"]) {
+      for (var department in body["departments"]) {
         departments.add(DepartmentModel.fromJson(department));
       }
 
