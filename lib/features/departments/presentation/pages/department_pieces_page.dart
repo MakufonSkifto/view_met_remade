@@ -8,10 +8,10 @@ import '../bloc/department_bloc.dart';
 import '../../../../core/injectors/injection_container_department.dart';
 import '../widgets/department_pieces_display.dart';
 
-class DepartmentPiecesList extends StatelessWidget {
+class DepartmentPiecesPage extends StatelessWidget {
   final Department department;
 
-  const DepartmentPiecesList({Key? key, required this.department}) : super(key: key);
+  const DepartmentPiecesPage({Key? key, required this.department}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
