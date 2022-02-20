@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../domain/entities/department.dart';
+import '../pages/department_pieces_page.dart';
 
 class DepartmentCard extends StatelessWidget {
   final Department department;
@@ -22,10 +23,10 @@ class DepartmentCard extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => DepartmentsPage(id: department.departmentId.toString(), name: name.toString())),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DepartmentPiecesPage(department: department)),
+                  );
                 },
                 child: Text("See Department", style: GoogleFonts.merriweatherSans(color: Colors.red)),
               ),
