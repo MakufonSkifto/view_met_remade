@@ -16,7 +16,7 @@ class DepartmentCard extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
-            title: Text(department.displayName),
+            title: Text(department.displayName, style: TextStyle(color: Colors.white.withOpacity(.90))),
           ),
           ButtonBar(
             alignment: MainAxisAlignment.start,
