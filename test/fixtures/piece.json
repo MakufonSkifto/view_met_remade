@@ -1,7 +1,7 @@
 {
   "title": "Coin, 10 Centavos",
   "objectName": "Centavos",
-  "artistDisplayName": "",
+  "artistDisplayName": "Unknown",
   "objectID": 31,
   "isHighlight": false,
   "objectDate": "1885",
@@ -12,6 +12,6 @@
   "dimensions": "Diam. 3/4 in. (1.9 cm)",
   "creditLine": "Gift of Mrs. Russell Sage, 1916",
   "objectURL": "https://www.metmuseum.org/art/collection/search/31",
-  "primaryImageSmall": "",
+  "primaryImageSmall": "Unknown",
   "country": "Mexico"
 }
