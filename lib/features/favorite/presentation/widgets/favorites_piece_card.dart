@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:view_met_remade/features/piece/presentation/pages/piece_page.dart';
 
 import '../../../piece/data/models/piece_model.dart';
 import '../../../piece/presentation/widgets/piece_display_widgets/image_widget.dart';
@@ -28,10 +29,10 @@ class FavoritesPieceCard extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => DetailsPage(id: data["objectID"].toString())),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PiecePage(id: piece.objectID)),
+                  );
                 },
                 child: const Text("Details", style: TextStyle(color: Colors.red)),
               ),
