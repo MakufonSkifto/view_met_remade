@@ -55,7 +55,8 @@ class DepartmentDataSourceImpl extends DepartmentDataSource {
       List<Piece> pieces = [];
 
       for (var piece in body["objectIDs"]) {
-        piece = pieceRepository.getPiece(piece);
+        piece = await pieceRepository.getPiece(piece);
+        print(piece);
         pieces.add(piece);
       }
 
