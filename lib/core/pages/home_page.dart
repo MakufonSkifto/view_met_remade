@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:view_met_remade/features/departments/presentation/pages/departments_list.dart';
-import 'package:view_met_remade/features/favorite/presentation/pages/favorites_page.dart';
 
 import '../widgets/welcome_text.dart';
+import '../widgets/about_button.dart';
+import '../widgets/favorites_button.dart';
+import '../widgets/view_met_image.dart';
+import '../widgets/view_met_text.dart';
+import '../widgets/departments_list_widget.dart';
+
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -14,62 +18,24 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          actions: [
-            IconButton(
-              iconSize: 30,
-              color: Colors.white,
-              icon: const Icon(Icons.info),
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => AboutPage()),
-                // );
-              },
-            ),
-            IconButton(
-              iconSize: 30,
-              color: Colors.white,
-              icon: const Icon(Icons.favorite),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const FavoritesPage()),
-                );
-              },
-            ),
-          ],
-        ),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actions: [
+          AboutButton(),
+          FavoriteButton()
+        ],
+      ),
       body: SafeArea(
         top: false,
         child: Center(
           child: Column(
             children: <Widget>[
               Stack(
-                  children: <Widget>[
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: 400,
-                      child: Image.asset(
-                          "assets/MET.jpg",
-                          fit: BoxFit.fill,
-                          color: const Color.fromRGBO(117, 117, 117, 0.5),
-                          colorBlendMode: BlendMode.modulate
-                      ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 150, 0, 20),
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Text(
-                            'View MET',
-                            style: GoogleFonts.playfairDisplaySc(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
-                          ),
-                        )
-                    ),
+                children: <Widget>[
+                  ViewMetImage(),
+                  ViewMetText(),
                     const Padding(
                       padding: EdgeInsets.fromLTRB(0, 200, 0, 20),
                       child: Align(
@@ -111,20 +77,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ]
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
-                child: Column(
-                  children: <Widget>[
-                    Text("Departments", style: GoogleFonts.merriweatherSans(fontSize: 18, color: Colors.white.withOpacity(.90))),
-                    Scrollbar(
-                      child: SizedBox(
-                          height: MediaQuery.of(context).size.height - 438,
-                          child: const DepartmentsList()
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              DepartmentsListWidget()
             ],
           ),
         ),
