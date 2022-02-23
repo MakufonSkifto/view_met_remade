@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ViewMetImage extends StatelessWidget {
+  const ViewMetImage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

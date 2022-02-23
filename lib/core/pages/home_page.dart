@@ -34,8 +34,8 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  ViewMetImage(),
-                  ViewMetText(),
+                  const ViewMetImage(),
+                  const ViewMetText(),
                   const WelcomeText(),
                   SearchWidget(controller: _controller),
                 ]
