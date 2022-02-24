@@ -11,13 +11,26 @@ class FavoritesDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return favorites.isEmpty
+        ? buildEmptyText()
+        : buildListView();
+  }
+
+  Widget buildListView() {
     return ListView.builder(
       itemCount: favorites.length,
+      shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         Map<String, dynamic> data = json.decode(favorites[index]);
 
         return FavoritesPieceCard(piece: PieceModel.fromJson(data));
       },
+    );
+  }
+
+  Widget buildEmptyText() {
+    return Center(
+      child: Text("Your favorites list is empty!", style: TextStyle(color: Colors.white.withOpacity(.90))),
     );
   }
 }
