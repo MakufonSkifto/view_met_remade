@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../pages/about_page.dart';
+
 class AboutButton extends StatelessWidget {
+  const AboutButton({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -8,10 +12,10 @@ class AboutButton extends StatelessWidget {
       color: Colors.white,
       icon: const Icon(Icons.info),
       onPressed: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => AboutPage()),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const AboutPage()),
+        );
       },
     );
   }

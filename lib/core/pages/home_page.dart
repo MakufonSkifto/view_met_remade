@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        actions: [
+        actions: const [
           AboutButton(),
           FavoriteButton()
         ],
