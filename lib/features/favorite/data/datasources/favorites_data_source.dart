@@ -29,7 +29,8 @@ class FavoritesDataSourceImpl implements FavoritesDataSource {
     if (favoritesList != null) {
       return Future.value(favoritesList);
     } else {
-      throw CacheException();
+      sharedPreferences.setStringList(favoritesListString, []);
+      return Future.value([]);
     }
   }
 

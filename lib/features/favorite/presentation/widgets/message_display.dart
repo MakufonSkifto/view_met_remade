@@ -8,7 +8,7 @@ class MessageDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(message),
+      child: Text(message, style: TextStyle(color: Colors.white.withOpacity(.90))),
     );
   }
 }

@@ -21,7 +21,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
 
     favoritesList.fold(
       (failure) {
-        emit(const Error(message: "An error occured while removing from favorites!"));
+        emit(const Error(message: "An error occured while getting favorites!"));
       },
       (favorites) {
         emit(Loaded(favoritedPieces: favorites));
