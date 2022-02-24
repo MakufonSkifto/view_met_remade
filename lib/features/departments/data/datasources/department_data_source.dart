@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:view_met_remade/features/departments/data/models/department_model.dart';
-import 'package:view_met_remade/features/piece/data/models/piece_model.dart';
 import 'package:view_met_remade/features/piece/domain/repositories/piece_repository.dart';
 
 import '../../../../core/constants/constants.dart';
@@ -54,10 +53,16 @@ class DepartmentDataSourceImpl extends DepartmentDataSource {
       Map body = json.decode(response.body);
       List<Piece> pieces = [];
 
-      for (var piece in body["objectIDs"]) {
-        piece = await pieceRepository.getPiece(piece);
-        print(piece);
-        pieces.add(piece);
+      for (var pieceObjectId in body["objectIDs"]) {
+        var piece = await pieceRepository.getPiece(pieceObjectId);
+        piece.fold(
+          (failure) {
+            throw CacheFailure();
+          },
+          (pieceReceived) {
+            pieces.add(pieceReceived);
+          }
+        );
       }
 
       return Right(pieces);
